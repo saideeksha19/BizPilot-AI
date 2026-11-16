@@ -1,0 +1,550 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   BIZPILOT AI — DESIGN TOKENS
+   Stone Blue × Ivory
+   ------------------------------------------------------------
+   The platform's existing screens use a small family of utility
+   classes (slate / violet / blue / emerald / amber / rose). Those
+   scales are re-pointed here to the brand palette so every module
+   inherits the new identity without altering any behaviour.
+   ============================================================ */
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Inter', ui-monospace, SFMono-Regular, monospace;
+
+  /* Brand */
+  --color-stone: #34495e;
+  --color-midnight: #263746;
+  --color-slate-blue: #647c8e;
+  --color-blue-muted: #91a6b5;
+  --color-ivory: #f5f0e6;
+  --color-ivory-soft: #faf8f2;
+  --color-gold: #b69a68;
+  --color-gold-soft: #cdb489;
+  --color-muted-ink: #5f6a70;
+
+  /* Warm neutral ramp — slate slots */
+  --color-slate-50: #faf8f2;
+  --color-slate-100: #f5f0e6;
+  --color-slate-200: #e6dfd1;
+  --color-slate-300: #ccd4d6;
+  --color-slate-400: #98a2a8;
+  --color-slate-500: #5f6a70;
+  --color-slate-600: #5c6a72;
+  --color-slate-700: #46586a;
+  --color-slate-800: #33475a;
+  --color-slate-900: #263746;
+  --color-slate-950: #1b2833;
+
+  /* Deep stone blue — violet slots (primary accent scale) */
+  --color-violet-50: #f1eee7;
+  --color-violet-100: #e7e3d8;
+  --color-violet-200: #d3d9d6;
+  --color-violet-300: #c3d0d9;
+  --color-violet-400: #91a6b5;
+  --color-violet-500: #647c8e;
+  --color-violet-600: #34495e;
+  --color-violet-700: #263746;
+  --color-violet-800: #22303c;
+  --color-violet-900: #1b2833;
+
+  /* Slate blue — blue slots (secondary / comparative series) */
+  --color-blue-50: #f2f1ea;
+  --color-blue-100: #e8e6dc;
+  --color-blue-200: #d8dce0;
+  --color-blue-300: #b7c6d0;
+  --color-blue-400: #91a6b5;
+  --color-blue-500: #647c8e;
+  --color-blue-600: #4e667a;
+  --color-blue-700: #3d5364;
+  --color-blue-800: #263746;
+  --color-blue-900: #1e2c38;
+
+  /* Muted sage — positive financial movement */
+  --color-emerald-50: #eef2ec;
+  --color-emerald-100: #e3eae3;
+  --color-emerald-200: #c8d7cc;
+  --color-emerald-300: #a9c2b2;
+  --color-emerald-400: #85a992;
+  --color-emerald-500: #628c74;
+  --color-emerald-600: #4c7660;
+  --color-emerald-700: #3e6150;
+  --color-emerald-800: #334f42;
+  --color-emerald-900: #2a4137;
+
+  /* Antique gold — caution / highlight */
+  --color-amber-50: #f8f2e6;
+  --color-amber-100: #f1e8d6;
+  --color-amber-200: #e6d7ba;
+  --color-amber-300: #d8c29b;
+  --color-amber-400: #c9b183;
+  --color-amber-500: #b69a68;
+  --color-amber-600: #9c8254;
+  --color-amber-700: #7e6944;
+  --color-amber-800: #665538;
+  --color-amber-900: #55472f;
+
+  /* Muted brick — negative financial movement */
+  --color-rose-50: #f7eeec;
+  --color-rose-100: #f0e0dd;
+  --color-rose-200: #e2cbc7;
+  --color-rose-300: #c9a7a1;
+  --color-rose-400: #b68b84;
+  --color-rose-500: #a5574f;
+  --color-rose-600: #8e4a43;
+  --color-rose-700: #763d38;
+  --color-rose-800: #63342f;
+  --color-rose-900: #532c29;
+
+  /* Pure white becomes warm paper */
+  --color-white: #fcfaf3;
+}
+
+@layer base {
+  :root {
+    --paper: #f5f0e6;
+    --paper-soft: #faf8f2;
+    --surface: #fcfaf3;
+    --surface-muted: #f2ece0;
+    --ink: #263746;
+    --ink-soft: #34495e;
+    --muted: #5f6a70;
+    --faint: #5b6e7a;
+    --line: #e3dccc;
+    --line-strong: #cfc5b2;
+    --gold-line: rgba(182, 154, 104, 0.42);
+    --positive: #4c7660;
+    --negative: #8e4a43;
+    --chart-grid: rgba(52, 73, 94, 0.12);
+  }
+
+  .dark {
+    --paper: #1b2833;
+    --paper-soft: #20303d;
+    --surface: #22323f;
+    --surface-muted: #2a3b4a;
+    --ink: #f5f0e6;
+    --ink-soft: #e6dfd0;
+    --muted: #aeb7ba;
+    --faint: #8b979d;
+    --line: rgba(245, 240, 230, 0.12);
+    --line-strong: rgba(245, 240, 230, 0.2);
+    --gold-line: rgba(205, 180, 137, 0.4);
+    --positive: #85a992;
+    --negative: #c08d86;
+    --chart-grid: rgba(245, 240, 230, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.25rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  /* Financial figures: clean, tabular, optically aligned */
+  .font-mono-num {
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1, 'ss01' 1;
+    letter-spacing: -0.012em;
+  }
+
+  ::selection {
+    background: rgba(182, 154, 104, 0.28);
+    color: inherit;
+  }
+
+  :focus-visible {
+    /* currentColor keeps the ring legible on both stone and ivory surfaces */
+    outline: 2px solid currentColor !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+/* Light-surface AA guard: the slate-400 utility is tuned for dark panels,
+   so on ivory we render it one step darker without touching dark theme. */
+:root:not(.dark) .text-slate-400 {
+  color: #5b6e7a;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 124, 142, 0.32);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 124, 142, 0.55);
+}
+
+/* ============================================================
+   SHARED SURFACES
+   ============================================================ */
+.paper {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.surface {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background-color: var(--line);
+}
+
+.gold-rule {
+  height: 1px;
+  width: 2.5rem;
+  background: linear-gradient(90deg, var(--gold), rgba(182, 154, 104, 0));
+}
+
+/* ============================================================
+   LANDING — STRUCTURE & TEXTURE
+   ============================================================ */
+.landing-shell {
+  background-color: var(--paper);
+  color: var(--ink);
+  overflow-x: clip;
+}
+
+.hero-deep {
+  background-color: #263746;
+  background-image:
+    radial-gradient(110% 90% at 12% 0%, rgba(52, 73, 94, 0.92) 0%, rgba(38, 55, 70, 0.98) 58%, #1f2e3b 100%),
+    radial-gradient(70% 60% at 88% 100%, rgba(100, 124, 142, 0.28) 0%, rgba(38, 55, 70, 0) 70%);
+  color: #f5f0e6;
+}
+
+.hero-aside {
+  /* Matched to the illustration's own ivory so the artwork sits in the plate. */
+  background-color: #fdf6eb;
+  color: #263746;
+}
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.vertical-rule {
+  width: 1px;
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0) 0%, rgba(245, 240, 230, 0.35) 50%, rgba(245, 240, 230, 0) 100%);
+}
+
+.vertical-rule-ink {
+  width: 1px;
+  background: linear-gradient(180deg, rgba(38, 55, 70, 0) 0%, rgba(38, 55, 70, 0.22) 50%, rgba(38, 55, 70, 0) 100%);
+}
+
+.landing-card {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  transition:
+    transform 520ms cubic-bezier(0.16, 0.84, 0.24, 1),
+    border-color 520ms ease,
+    box-shadow 520ms ease,
+    background-color 520ms ease;
+}
+
+.landing-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(182, 154, 104, 0) 0%, rgba(182, 154, 104, 0.85) 50%, rgba(182, 154, 104, 0) 100%);
+  opacity: 0;
+  transition: opacity 520ms ease;
+}
+
+.landing-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--line-strong);
+  box-shadow: 0 22px 50px -32px rgba(38, 55, 70, 0.45);
+}
+
+.landing-card:hover::before,
+.landing-card:focus-within::before {
+  opacity: 1;
+}
+
+.landing-card .card-icon {
+  transition: transform 620ms cubic-bezier(0.16, 0.84, 0.24, 1), background-color 420ms ease, color 420ms ease;
+}
+
+.landing-card:hover .card-icon {
+  transform: translateY(-2px) rotate(-3deg);
+  background-color: #34495e;
+  color: #f5f0e6;
+}
+
+.link-quiet {
+  position: relative;
+  transition: color 260ms ease;
+}
+
+.link-quiet::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms cubic-bezier(0.16, 0.84, 0.24, 1);
+  opacity: 0.5;
+}
+
+.link-quiet:hover::after,
+.link-quiet:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.hairline-link::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin-top: 0.6rem;
+  background-color: currentColor;
+  opacity: 0.18;
+  transition: opacity 380ms ease, background-color 380ms ease;
+}
+
+.hairline-link:hover::after {
+  opacity: 0.7;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 0.9rem 1.4rem;
+  border-radius: 2px;
+  transition:
+    background-color 360ms ease,
+    color 360ms ease,
+    border-color 360ms ease,
+    transform 360ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-ivory {
+  background-color: #f5f0e6;
+  color: #263746;
+  border: 1px solid #f5f0e6;
+}
+
+.btn-ivory:hover {
+  background-color: #fcfaf3;
+  border-color: #fcfaf3;
+}
+
+.btn-outline-ivory {
+  background-color: transparent;
+  color: #f5f0e6;
+  border: 1px solid rgba(245, 240, 230, 0.32);
+}
+
+.btn-outline-ivory:hover {
+  border-color: rgba(245, 240, 230, 0.7);
+  background-color: rgba(245, 240, 230, 0.06);
+}
+
+.btn-stone {
+  background-color: #34495e;
+  color: #f5f0e6;
+  border: 1px solid #34495e;
+}
+
+.btn-stone:hover {
+  background-color: #263746;
+  border-color: #263746;
+}
+
+.btn-gold {
+  background-color: #b69a68;
+  color: #1f2e3b;
+  border: 1px solid #b69a68;
+}
+
+.btn-gold:hover {
+  background-color: #cdb489;
+  border-color: #cdb489;
+}
+
+.btn-outline-ink {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+
+.btn-outline-ink:hover {
+  border-color: var(--ink-soft);
+  background-color: rgba(52, 73, 94, 0.05);
+}
+
+/* ============================================================
+   MOTION PRIMITIVES
+   ============================================================ */
+@keyframes bp-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+@keyframes bp-scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+  35% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  70% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: bp-float 9s ease-in-out infinite;
+}
+
+.scroll-cue-line {
+  animation: bp-scroll-cue 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* ============================================================
+   DASHBOARD REFINEMENTS
+   ============================================================ */
+.app-canvas {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Gentle cross-fade when moving between the brand site and the workspace */
+@keyframes bp-view-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.view-enter {
+  animation: bp-view-in 520ms ease-out both;
+}
+
+.app-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.nav-active-indicator {
+  box-shadow: inset 2px 0 0 0 #b69a68;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .scroll-cue-line {
+    animation: none !important;
+  }
+}

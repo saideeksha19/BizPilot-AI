@@ -1,0 +1,31 @@
+# Web framework & ASGI server
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Validation & environment settings
+pydantic==2.10.4
+pydantic-settings==2.7.1
+python-dotenv==1.0.1
+
+# ORM, migrations & PostgreSQL driver (psycopg v3)
+SQLAlchemy==2.0.37
+alembic==1.14.1
+psycopg[binary]==3.2.4
+
+# Security & auth dependencies (used in Checkpoint D)
+passlib[bcrypt]==1.7.4
+bcrypt==4.2.1
+PyJWT==2.10.1
+email-validator==2.2.0
+
+# Testing & HTTP client (used in Checkpoint F)
+pytest==8.3.4
+httpx==0.28.1
+
+# Google Gemini AI SDK (backend-only Checkpoint G Copilot)
+google-genai>=1.5.0,<2.0.0
+
+# Optional distributed rate-limit store for multi-worker deployments
+redis>=5.2.0,<6.0.0
+

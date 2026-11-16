@@ -1,0 +1,54 @@
+databases:
+  - name: bizpilot-ai-db
+    databaseName: bizpilot_ai
+    user: bizpilot_user
+    plan: free
+
+services:
+  - type: web
+    name: bizpilot-ai-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: PROXY_HEADERS_ENABLED
+        value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bizpilot-ai-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+      # Replace with your deployed Vercel origin(s), comma-separated
+      - key: CORS_ORIGINS
+        value: https://your-bizpilot-frontend.vercel.app
+      # Replace with your Render hostname + custom domain(s)
+      - key: TRUSTED_HOSTS
+        value: "*.onrender.com,localhost,127.0.0.1"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-4-hydrogen
+      - key: GEMINI_TIMEOUT_SECONDS
+        value: "25.0"
+      - key: COPILOT_RATE_LIMIT_REQUESTS
+        value: "20"
+      - key: COPILOT_RATE_LIMIT_WINDOW_SECONDS
+        value: "60"
+      # Optional: set REDIS_URL if scaling beyond 1 worker/instance
+      - key: REDIS_URL
+        sync: false
